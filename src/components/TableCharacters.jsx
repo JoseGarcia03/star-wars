@@ -45,9 +45,10 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
       fixed: 'rigth',
       render: (data) => <Button onClick={()=>{
         setChar( data )
-        setVisible( true )
-        getPlanet( data.homeworld ).then( (planet)=> setPlatet( planet ) )
-        console.log( data );
+        getPlanet( data.homeworld ).then( (planet)=> {
+          setPlatet( planet )
+          setVisible( true )
+        } )
       }}>More</Button>,
     }
 

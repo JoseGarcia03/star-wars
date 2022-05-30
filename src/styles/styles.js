@@ -10,15 +10,17 @@ export const DivLoaderStyled = styled.div`
 
 export const DivDescriptionStyled = styled.div`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 1rem;
     border-radius: .5rem;
     background-color: #E6B13A;
     padding: 2rem;
+    gap: .2rem;
 `
 
 export const DivFeatureStyled = styled.div`
     display: flex;
     align-items: center;
-    gap: .2rem;
+    gap: .3rem;
 `
