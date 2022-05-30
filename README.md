@@ -14,7 +14,7 @@ $ npm start
 ```
 
 ## Despliegue 📦
-- [Star Wars App](https://mascotas-geek.netlify.app/)
+- [Star Wars App](https://star-wars-navy.vercel.app/)
 
 ## Estructura de carpetas 📂
 ```
