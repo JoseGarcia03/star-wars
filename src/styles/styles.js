@@ -7,3 +7,18 @@ export const DivLoaderStyled = styled.div`
     justify-content: center;
     align-items: center;
 `
+
+export const DivDescriptionStyled = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    border-radius: .5rem;
+    background-color: #E6B13A;
+    padding: 2rem;
+`
+
+export const DivFeatureStyled = styled.div`
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+`
