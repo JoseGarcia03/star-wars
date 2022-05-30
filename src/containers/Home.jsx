@@ -6,6 +6,7 @@ import { Image, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const Home = ({ loader, setLoader }) => {
+    // Estados
     const [characters, setCharacters] = useState({})
     const [load, setLoad] = useState(true)
     const [page, setPage] = useState(1)

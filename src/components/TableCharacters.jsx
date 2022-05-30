@@ -4,25 +4,28 @@ import { getPlanet } from '../helpers/getPlanet';
 import { DivDescriptionStyled, DivFeatureStyled } from '../styles/styles';
 
 const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } ) => {
-
+  // Estados
   const [visible, setVisible] = useState(false);
   const [char, setChar] = useState({})
   const [platet, setPlatet] = useState({})
 
+  // Configuracion de las columnas de la tabla
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
-      filters: [{}],
       filterSearch: true,
       width: '30%',
-      onFilter: (value, record) => record.address.startsWith(value)
+      sorter: (a, b) => a.name.localeCompare(b.name),
+      // onFilter: (value, record) => record.address.startsWith(value)
     },
     {
       title: 'Gender',
       dataIndex: 'gender',
       filters: [{ text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' }],
+      { text: 'Female', value: 'female' },
+      { text: 'N/A', value: 'n/a' }],
+      onFilter: (value, record) => record.gender.indexOf(value) === 0,
       filterMode: 'menu',
       width: '15%',
     },
@@ -45,6 +48,7 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
       fixed: 'rigth',
       render: (data) => <Button onClick={()=>{
         setChar( data )
+        console.log( data );
         getPlanet( data.homeworld ).then( (planet)=> {
           setPlatet( planet )
           setVisible( true )
@@ -53,7 +57,7 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
     }
 
   ]
-
+  // Le ponemos una key a cada elemento
   const dataSource = characters.results.map(( v, i )=> ({
     key: i, 
     ...v
@@ -68,6 +72,7 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
   return (
     <>
       <div style={{ width: '80%', margin: '1.5rem auto'}}>
+        {/* Tabla */}
         <Table
           columns={columns}
           dataSource={dataSource}
@@ -77,6 +82,7 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
             current: page,
             total: 82,
             showSizeChanger: false,
+            // Cambio de la pagina
             onChange: page => setPage(page),
             position: ['bottomCenter'],
             disabled: load ? true : false
@@ -113,8 +119,7 @@ const Tablecharacters = ( { characters = { results: [] }, page, setPage, load } 
         <DivFeatureStyled><i className="ri-drop-fill ri-xl"></i> { capitalize(platet?.climate) }</DivFeatureStyled>
         <DivFeatureStyled><i className="ri-road-map-fill ri-xl"></i> { capitalize(platet?.terrain) }</DivFeatureStyled>
         </DivDescriptionStyled>
-          
-
+        <br />
       </Modal>
     </>
   )
